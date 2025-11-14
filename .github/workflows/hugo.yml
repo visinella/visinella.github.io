@@ -1,19 +1,28 @@
-name: Deploy Hugo site from subfolder
+name: Deploy Hugo Site (Production)
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: hugo-site
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Hugo
@@ -24,11 +33,14 @@ jobs:
       - name: Build
         run: hugo --minify
 
-      - name: List public directory
-        run: ls -l ./public
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: hugo-site/public
+          path: hugo-site/public
+
+      - name: Deploy to GitHub Pages (Production)
+        id: deployment
+        uses: actions/deploy-pages@v4
