@@ -2,8 +2,8 @@ name: Deploy Astro site
 
 on:
   push:
-    branches: [ astro ]
-  workflow_dispatch:
+    branches:
+      - dev
 
 jobs:
   build:
@@ -27,4 +27,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./astro/dist
-          publish_branch: gh-pages
+          publish_branch: gh-pages-dev
