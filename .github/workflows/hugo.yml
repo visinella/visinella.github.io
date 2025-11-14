@@ -3,7 +3,7 @@ name: Deploy Hugo site from subfolder
 on:
   push:
     branches:
-      - main  # or master if that's your default
+      - main
 
 jobs:
   build-deploy:
