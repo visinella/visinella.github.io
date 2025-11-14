@@ -83,6 +83,7 @@
 
 	a {
 		color: var(--color-gray-700);
+
 		&:hover {
 			text-decoration: underline;
 		}
@@ -194,9 +195,9 @@ p {
 	display: none !important;
 }
 
-section.bg-white + section.bg-white > .container,
-section.bg-brand-green + section.bg-brand-green > .container,
-section.bg-brand-red + section.bg-brand-red > .container {
+section.bg-white+section.bg-white>.container,
+section.bg-brand-green+section.bg-brand-green>.container,
+section.bg-brand-red+section.bg-brand-red>.container {
 	@apply pt-0;
 }
 
@@ -222,6 +223,7 @@ label {
 	font-weight: 300;
 	src: url("/fonts/inter/inter-v18-latin-300.woff2") format("woff2");
 }
+
 /* inter-300italic - latin */
 @font-face {
 	font-display: swap;
@@ -230,6 +232,7 @@ label {
 	font-weight: 300;
 	src: url("/fonts/inter/inter-v18-latin-300italic.woff2") format("woff2");
 }
+
 /* inter-regular - latin */
 @font-face {
 	font-display: swap;
@@ -238,6 +241,7 @@ label {
 	font-weight: 400;
 	src: url("/fonts/inter/inter-v18-latin-regular.woff2") format("woff2");
 }
+
 /* inter-italic - latin */
 @font-face {
 	font-display: swap;
@@ -246,6 +250,7 @@ label {
 	font-weight: 400;
 	src: url("/fonts/inter/inter-v18-latin-italic.woff2") format("woff2");
 }
+
 /* inter-500 - latin */
 @font-face {
 	font-display: swap;
@@ -254,6 +259,7 @@ label {
 	font-weight: 500;
 	src: url("/fonts/inter/inter-v18-latin-500.woff2") format("woff2");
 }
+
 /* inter-500italic - latin */
 @font-face {
 	font-display: swap;
@@ -262,6 +268,7 @@ label {
 	font-weight: 500;
 	src: url("/fonts/inter/inter-v18-latin-500italic.woff2") format("woff2");
 }
+
 /* inter-600 - latin */
 @font-face {
 	font-display: swap;
@@ -270,6 +277,7 @@ label {
 	font-weight: 600;
 	src: url("/fonts/inter/inter-v18-latin-600.woff2") format("woff2");
 }
+
 /* inter-600italic - latin */
 @font-face {
 	font-display: swap;
@@ -278,6 +286,7 @@ label {
 	font-weight: 600;
 	src: url("/fonts/inter/inter-v18-latin-600italic.woff2") format("woff2");
 }
+
 /* inter-700 - latin */
 @font-face {
 	font-display: swap;
@@ -286,6 +295,7 @@ label {
 	font-weight: 700;
 	src: url("/fonts/inter/inter-v18-latin-700.woff2") format("woff2");
 }
+
 /* inter-700italic - latin */
 @font-face {
 	font-display: swap;
@@ -294,6 +304,7 @@ label {
 	font-weight: 700;
 	src: url("/fonts/inter/inter-v18-latin-700italic.woff2") format("woff2");
 }
+
 /* inter-900 - latin */
 @font-face {
 	font-display: swap;
@@ -302,6 +313,7 @@ label {
 	font-weight: 900;
 	src: url("/fonts/inter/inter-v18-latin-900.woff2") format("woff2");
 }
+
 /* inter-900italic - latin */
 @font-face {
 	font-display: swap;
@@ -322,6 +334,7 @@ label {
 	box-sizing: border-box;
 	animation: animloader 2s linear infinite;
 }
+
 .loader::after {
 	content: "";
 	box-sizing: border-box;
@@ -338,16 +351,27 @@ label {
 	0% {
 		transform: translate(-8px, -8px);
 	}
+
 	25% {
 		transform: translate(-8px, 8px);
 	}
+
 	50% {
 		transform: translate(8px, 8px);
 	}
+
 	75% {
 		transform: translate(8px, -8px);
 	}
+
 	100% {
 		transform: translate(-8px, -8px);
+	}
+}
+
+@layer utilities {
+	.clip-blob {
+		aspect-ratio: 1;
+		clip-path: shape(from 91.78% 56.23%,curve to 80.17% 76.21% with 88.98% 68.34%,curve to 60.43% 88.29% with 71.35% 84.07%,curve to 36.98% 90.65% with 49.51% 92.51%,curve to 17.33% 78.20% with 24.45% 88.78%,curve to 6.75% 55.18% with 10.22% 67.62%,curve to 11.82% 33.22% with 3.29% 42.74%,curve to 28.94% 14.68% with 20.35% 23.71%,curve to 50.80% 4.83% with 37.53% 5.65%,curve to 73.60% 12.99% with 64.07% 4.02%,curve to 88.85% 33.03% with 83.13% 21.95%,curve to 91.78% 56.23% with 94.57% 44.11%);
 	}
 }

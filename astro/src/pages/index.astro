@@ -20,32 +20,40 @@ import DecorativeImage from "~/assets/images/pexels-shvetsa-5953523.jpg";
 import reviewAuthors from "~/assets/images/review-authors.png";
 import Dessert from "~/assets/images/dessert.png";
 import Mussels from "~/assets/images/mussels2.png";
+import CherryGemRaureni from "~/assets/images/products/cherry-gem-raureni.jpg";
+import CherryJarCarton from "~/assets/images/products/cherry-jar-carton.jpg";
+import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
+import Visinata from "~/assets/images/products/visinata.jpg";
 ---
 
-<Layout title="Home" pageTitle="Home" description="Welcome to our restaurant!">
+<Layout title="Visinella" pageTitle="Visinella" description="Welcome to Visinella!">
 	<Section class:list={"bg-white"}>
 		<Hero>
 			<div slot="hero-content-left" class="prose max-w-none max-lg:order-1">
-				<Badge title="il ristorante italiana" />
-				<h1 class="font-black">Real Italian food in a real Italian restaurant...</h1>
+				<!-- <Badge title="il ristorante italiana" /> -->
+				<h1 class="font-black">Produse naturale din livada noastră.</h1>
 
 				<p>
-					Experience the taste of Italy with our authentic dishes made from the finest ingredients. Indulge in
-					our wide variety of pizzas, pastas, and desserts, all crafted with love and tradition. Whether
-					you're dining in or taking out, we promise a memorable culinary experience.
+					Suntem un producător dedicat realizării de produse naturale, din vișine culese cu grijă din propria livadă.
+					Prin marca Visinella, ne propunem să aducem un gust autentic și sănătos în fiecare casă, oferind compoturi,
+					gemuri și alte delicii realizate fără conservanți sau aditivi artificiali.
 				</p>
 
-				<span class="text-brand-green font-medium">✔ We also deliver</span>
+				<span class="text-brand-green font-medium">✔ Facem și livrare</span>
 
 				<div class="mt-8 flex items-center gap-x-8">
-					<Button url="/book">Book now</Button>
+					<!-- <Button url="/book">Book now</Button> -->
 					<ButtonCallUs />
 				</div>
 			</div>
+
+			<!-- w-full h-auto object-cover [clip-path:ellipse(70%_55%_at_50%_50%)] -->
+			 <!-- clip-blob w-full h-auto object-cover -->
+			  <!-- class:list={"w-80 h-80 object-cover [clip-path:ellipse(70%_55%_at_50%_50%)] shadow-lg mx-auto"} -->
 			<div slot="hero-content-right">
 				<Picture
-					class:list={"mx-auto"}
-					src={PizzaHero}
+					class:list={"clip-blob w-120 h-120 object-cover shadow-lg mx-auto"}
+					src={CherryJarOpened}
 					height={600}
 					formats={["avif", "webp"]}
 					alt="A description of my image."
@@ -56,13 +64,14 @@ import Mussels from "~/assets/images/mussels2.png";
 		</Hero>
 	</Section>
 
-	<WideImage image={DecorativeImage} alt="Just an image" class:list={"aspect-video lg:aspect-[16/6]"} />
+	<!-- <WideImage image={DecorativeImage} alt="Just an image" class:list={"aspect-video lg:aspect-[16/6]"} /> -->
 
 	<Section class:list={"bg-white"}>
 		<Heading>
-			<h2 slot="heading-title" class="font-black text-brand-green h2">Our dishes</h2>
+			<h2 slot="heading-title" class="font-black text-brand-green h2">Produsele noastre</h2>
 			<p slot="heading-content">
-				Explore our selection of authentic Italian dishes, from classic pizzas to homemade pastas.
+				Descoperă produse naturale din vișine, realizate cu pasiune și grijă pentru
+				calitate.
 			</p>
 		</Heading>
 
@@ -70,15 +79,15 @@ import Mussels from "~/assets/images/mussels2.png";
 			<div slot="grid-content-1">
 				<div class="flex flex-col items-center prose text-center">
 					<Picture
-						class:list={"not-prose w-full h-auto"}
-						src={Pizza}
+						class:list={"clip-blob not-prose w-full h-auto"}
+						src={CherryJarCarton}
 						formats={["avif", "webp"]}
 						alt="A description of my image."
 					/>
-					<h3 class="h4 mt-0 font-black">Pasta &amp; Spaghetti</h3>
+					<h3 class="h4 mt-0 font-black">Compot de vișine</h3>
 					<p>
-						Pasta is a staple of Italian cuisine, with a rich history dating back centuries. It comes in
-						various shapes and sizes, each suited to different sauces and preparations.
+						Fiecare borcan este plin cu vișine proaspete, culese manual din livada noastră și
+						gătite cu grijă pentru a păstra aroma naturală și beneficiile nutriționale.
 					</p>
 				</div>
 			</div>
@@ -86,15 +95,15 @@ import Mussels from "~/assets/images/mussels2.png";
 			<div slot="grid-content-2">
 				<div class="flex flex-col items-center prose text-center">
 					<Picture
-						class:list={"not-prose w-full h-auto"}
-						src={Spaghetti}
+						class:list={"clip-blob not-prose w-full h-auto"}
+						src={CherryGemRaureni}
 						formats={["avif", "webp"]}
 						alt="A description of my image."
 					/>
-					<h3 class="h4 mt-0 font-black">Pasta &amp; Spaghetti</h3>
+					<h3 class="h4 mt-0 font-black">Gem de vișine</h3>
 					<p>
-						Pasta is a staple of Italian cuisine, with a rich history dating back centuries. It comes in
-						various shapes and sizes, each suited to different sauces and preparations.
+						Gemul nostru de vișine este preparat după o rețetă tradițională, fără adaos de
+						conservanți, oferind un gust autentic și bogat.
 					</p>
 				</div>
 			</div>
@@ -102,21 +111,21 @@ import Mussels from "~/assets/images/mussels2.png";
 			<div slot="grid-content-3">
 				<div class="flex flex-col items-center prose text-center">
 					<Picture
-						class:list={"not-prose w-full h-auto"}
-						src={Fish}
+						class:list={"clip-blob not-prose w-full h-auto"}
+						src={Visinata}
 						formats={["avif", "webp"]}
 						alt="A description of my image."
 					/>
-					<h3 class="h4 mt-0 font-black">Pasta &amp; Spaghetti</h3>
+					<h3 class="h4 mt-0 font-black">Vișinată</h3>
 					<p>
-						Pasta is a staple of Italian cuisine, with a rich history dating back centuries. It comes in
-						various shapes and sizes, each suited to different sauces and preparations.
+						Vișinata noastră este o băutură tradițională, realizată prin macerarea vișinelor
+						în alcool, oferind un gust dulce-acrișor și o aromă inconfundabilă.
 					</p>
 				</div>
 			</div>
 		</Grid>
 	</Section>
-
+<!-- 
 	<Section class:list={"bg-white"}>
 		<Hero>
 			<div slot="hero-content-left" class="prose lg:order-2">
@@ -192,7 +201,7 @@ import Mussels from "~/assets/images/mussels2.png";
 				/>
 			</div>
 		</Hero>
-	</Section>
+	</Section> -->
 
 	<!-- Reviews -->
 	<Section class:list={"bg-brand-red/20 relative"}>
@@ -244,7 +253,7 @@ import Mussels from "~/assets/images/mussels2.png";
 	</Section>
 
 	<!-- Desserts -->
-	<Section class:list={"bg-white"}>
+	<!-- <Section class:list={"bg-white"}>
 		<Hero>
 			<div slot="hero-content-left" class="prose max-w-none order-2">
 				<Badge title="dolce" />
@@ -277,10 +286,10 @@ import Mussels from "~/assets/images/mussels2.png";
 				/>
 			</div>
 		</Hero>
-	</Section>
+	</Section> -->
 
 	<!-- Contact -->
-	<Section class:list={"bg-white"}>
+	<!-- <Section class:list={"bg-white"}>
 		<Hero>
 			<div slot="hero-content-left" class="prose max-w-none">
 				<Badge color="red" title="benvenuto" />
@@ -311,5 +320,5 @@ import Mussels from "~/assets/images/mussels2.png";
 				/>
 			</div>
 		</Hero>
-	</Section>
+	</Section> -->
 </Layout>
