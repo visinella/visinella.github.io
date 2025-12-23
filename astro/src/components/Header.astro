@@ -1,5 +1,6 @@
 ---
 import { menuMain } from "~/data/menus.js";
+import visinellaLogo from "~/assets/images/logo/visinella_logo-383x180.png";
 
 const rmTrailingSlash = (path: string): string => {
   return path.endsWith("/") && path.length > 1 
@@ -14,7 +15,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 	<div class="container py-6">
 		<nav class="flex items-center justify-between" aria-label="Global">
 			<a href="/" class="-m-1.5 p-1.5">
-				<p class="font-bold text-4xl text-brand-green">Astro<span class="text-brand-red bg-brand-red/5 px-3 ml-1 rounded-lg">Pie</span></p>
+				<img src={visinellaLogo.src} alt="Visinella" class="h-12 w-auto" />
 			</a>
 			<div class="flex lg:hidden">
 				<button
@@ -66,7 +67,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 			>
 				<div class="flex items-center justify-between">
 					<a href="/" class="-m-1.5 p-1.5">
-						<p class="font-bold text-4xl text-brand-green">Astro<span class="text-brand-red">Pie</span></p>
+						<img src={visinellaLogo.src} alt="Visinella" class="h-12 w-auto" />
 					</a>
 					<button type="button" class="-m-2.5 p-2.5 text-brand-red" {...({ '@click': 'open = false' } as any)}>
 						<span class="sr-only">Close menu</span>
