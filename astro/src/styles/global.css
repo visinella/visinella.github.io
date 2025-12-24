@@ -7,8 +7,6 @@
 	--color-brand-red-dark: #5f101d;
 	--color-brand-red: #7a1525;
 	--color-brand-red-light: #951a2d;
-	/* Use same red family for green (replaced with red-dark) */
-	--color-brand-green: #5f101d;
 }
 
 @utility container {
@@ -176,7 +174,7 @@ p {
 }
 
 .button-green {
-	@apply bg-brand-green hover:bg-brand-green/80 text-white focus-visible:outline-brand-green;
+	@apply bg-brand-red-dark hover:bg-brand-red-dark/80 text-white focus-visible:outline-brand-red-dark;
 }
 
 .button-red {
@@ -184,7 +182,7 @@ p {
 }
 
 .menu-item-highlighted.menu-item-highlighted {
-	@apply text-white bg-brand-green px-4 rounded-full py-1.5 hover:bg-brand-green/80 hover:text-white;
+	@apply text-white bg-brand-red-dark px-4 rounded-full py-1.5 hover:bg-brand-red-dark/80 hover:text-white;
 }
 
 .menu-item-active.menu-item-highlighted {
@@ -192,7 +190,7 @@ p {
 }
 
 .menu-item-active:not(.menu-item-highlighted) {
-	@apply text-brand-green font-bold;
+	@apply text-brand-red-dark font-bold;
 }
 
 [x-cloak] {
@@ -200,14 +198,14 @@ p {
 }
 
 section.bg-white+section.bg-white>.container,
-section.bg-brand-green+section.bg-brand-green>.container,
+section.bg-brand-red-dark+section.bg-brand-red-dark>.container,
 section.bg-brand-red+section.bg-brand-red>.container {
 	@apply pt-0;
 }
 
 input,
 textarea {
-	@apply border border-gray-300 rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-brand-green;
+	@apply border border-gray-300 rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-brand-red-dark;
 }
 
 label {

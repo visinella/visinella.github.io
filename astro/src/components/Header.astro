@@ -39,7 +39,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 				>
 					<span class="sr-only">Open main menu</span>
 					<svg
-						class="size-8 text-brand-green"
+						class="size-8 text-brand-red-dark"
 						fill="none"
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
@@ -60,7 +60,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 						<a
 							href={item.url}
 							{...({ '@click.prevent': `scrollToSection('${item.url}')` } as any)}
-							class={`transition text-base/6 font-semibold hover:text-brand-green cursor-pointer ${item.highlighted ? "menu-item-highlighted" : ""} ${pathname === item.url || (pathname === '/' && item.url.startsWith('/#')) ? "menu-item-active" : ""}`}
+							class={`transition text-base/6 font-semibold hover:text-brand-red-dark cursor-pointer ${item.highlighted ? "menu-item-highlighted" : ""} ${pathname === item.url || (pathname === '/' && item.url.startsWith('/#')) ? "menu-item-active" : ""}`}
 						>
 							{item.name}
 						</a>
