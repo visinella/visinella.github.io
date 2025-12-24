@@ -1,0 +1,119 @@
+---
+import { Picture } from "astro:assets";
+import productsData from "~/data/products.json";
+
+// Import product images
+import BorcanVisine from "~/assets/images/products/borcan_visine.jpeg";
+import BorcaneDulciata from "~/assets/images/products/borcane_dulciata.jpeg";
+import VisinataTarg from "~/assets/images/products/visinata_targ_4.jpeg";
+
+// Map image filenames to imported images
+const imageMap: Record<string, any> = {
+	"borcan_visine.jpeg": BorcanVisine,
+	"borcane_dulciata.jpeg": BorcaneDulciata,
+	"visinata_targ_4.jpeg": VisinataTarg,
+};
+---
+
+<div class="products-slider-wrapper relative mt-8">
+	<div class="swiper products-swiper">
+		<div class="swiper-wrapper">
+			{productsData.map((product) => {
+				const productImage = imageMap[product.image];
+				return (
+					<div class="swiper-slide">
+						<div class="flex flex-col items-center prose text-center px-4">
+							{productImage && (
+								<Picture
+									class:list={"clip-blob not-prose w-full h-auto"}
+									src={productImage}
+									formats={["avif", "webp"]}
+									alt={product.name}
+								/>
+							)}
+							<h3 class="h4 mt-0 font-black">{product.name}</h3>
+							<p>{product.description}</p>
+						</div>
+					</div>
+				);
+			})}
+		</div>
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</div>
+</div>
+
+<script>
+	import Swiper from "swiper";
+	import { Navigation, Autoplay } from "swiper/modules";
+	import "swiper/css";
+	import "swiper/css/navigation";
+
+	document.addEventListener("astro:page-load", () => {
+		const productsSwiper = document.querySelector(".products-swiper") as HTMLElement;
+		if (productsSwiper) {
+			new Swiper(productsSwiper, {
+				modules: [Navigation, Autoplay],
+				loop: true,
+				slidesPerView: 1,
+				spaceBetween: 32,
+				autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				},
+				navigation: {
+					nextEl: ".swiper-button-next",
+					prevEl: ".swiper-button-prev",
+				},
+				breakpoints: {
+					640: {
+						slidesPerView: 2,
+						spaceBetween: 40,
+					},
+					1024: {
+						slidesPerView: 3,
+						spaceBetween: 48,
+					},
+				},
+			});
+		}
+	});
+</script>
+
+<style>
+	.products-slider-wrapper {
+		position: relative;
+		padding: 0 3rem;
+	}
+
+	.products-swiper .swiper-button-next,
+	.products-swiper .swiper-button-prev {
+		color: var(--color-brand-red-dark);
+		width: 3rem;
+		height: 3rem;
+		background: white;
+		border-radius: 50%;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		transition: all 0.3s ease;
+	}
+
+	.products-swiper .swiper-button-next:hover,
+	.products-swiper .swiper-button-prev:hover {
+		background: var(--color-brand-red-dark);
+		color: white;
+		box-shadow: 0 4px 12px rgba(95, 16, 29, 0.3);
+	}
+
+	.products-swiper .swiper-button-next::after,
+	.products-swiper .swiper-button-prev::after {
+		font-size: 1.2rem;
+		font-weight: bold;
+	}
+
+	@media (max-width: 640px) {
+		.products-slider-wrapper {
+			padding: 0 2rem;
+		}
+	}
+</style>
+

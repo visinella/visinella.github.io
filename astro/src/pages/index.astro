@@ -4,14 +4,11 @@ import Section from "~/components/Section.astro";
 import Hero from "~/components/Hero.astro";
 import { Picture } from "astro:assets";
 import ButtonCallUs from "~/components/ButtonCallUs.astro";
-import Grid from "~/components/Grid.astro";
 import Heading from "~/components/Heading.astro";
+import ProductSlider from "~/components/ProductSlider.astro";
 
 // Images
-import BorcaneDulciata from "~/assets/images/products/borcane_dulciata.jpeg";
-import BorcanVisine from "~/assets/images/products/borcan_visine.jpeg";
 import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
-import VisinataTarg from "~/assets/images/products/visinata_targ_4.jpeg";
 ---
 
 <Layout title="Visinella" pageTitle="Visinella" description="Welcome to Visinella!">
@@ -54,55 +51,7 @@ import VisinataTarg from "~/assets/images/products/visinata_targ_4.jpeg";
 			</p>
 		</Heading>
 
-		<Grid>
-			<div slot="grid-content-1">
-				<div class="flex flex-col items-center prose text-center">
-					<Picture
-						class:list={"clip-blob not-prose w-full h-auto"}
-						src={BorcanVisine}
-						formats={["avif", "webp"]}
-						alt="A description of my image."
-					/>
-					<h3 class="h4 mt-0 font-black">Compot de vișine</h3>
-					<p>
-						Fiecare borcan este plin cu vișine proaspete, culese manual din livada noastră și
-						gătite cu grijă pentru a păstra aroma naturală și beneficiile nutriționale.
-					</p>
-				</div>
-			</div>
-
-			<div slot="grid-content-2">
-				<div class="flex flex-col items-center prose text-center">
-					<Picture
-						class:list={"clip-blob not-prose w-full h-auto"}
-						src={BorcaneDulciata}
-						formats={["avif", "webp"]}
-						alt="A description of my image."
-					/>
-					<h3 class="h4 mt-0 font-black">Gem de vișine</h3>
-					<p>
-						Gemul nostru de vișine este preparat după o rețetă tradițională, fără adaos de
-						conservanți, oferind un gust autentic și bogat.
-					</p>
-				</div>
-			</div>
-
-			<div slot="grid-content-3">
-				<div class="flex flex-col items-center prose text-center">
-					<Picture
-						class:list={"clip-blob not-prose w-full h-auto"}
-						src={VisinataTarg}
-						formats={["avif", "webp"]}
-						alt="A description of my image."
-					/>
-					<h3 class="h4 mt-0 font-black">Vișinată</h3>
-					<p>
-						Vișinata noastră este o băutură tradițională, realizată prin macerarea vișinelor
-						în alcool, oferind un gust dulce-acrișor și o aromă inconfundabilă.
-					</p>
-				</div>
-			</div>
-		</Grid>
+		<ProductSlider />
 	</Section>
 	<Section id="reviews" class:list={"bg-brand-red/20 relative"} style="background-color: rgba(122, 21, 37, 0.2) !important;">
 		<div class="py-16">

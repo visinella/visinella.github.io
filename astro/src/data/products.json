@@ -1,0 +1,39 @@
+[
+	{
+		"id": 1,
+		"name": "Compot de vișine",
+		"description": "Fiecare borcan este plin cu vișine proaspete, culese manual din livada noastră și gătite cu grijă pentru a păstra aroma naturală și beneficiile nutriționale.",
+		"image": "borcan_visine.jpeg"
+	},
+	{
+		"id": 2,
+		"name": "Gem de vișine",
+		"description": "Gemul nostru de vișine este preparat după o rețetă tradițională, fără adaos de conservanți, oferind un gust autentic și bogat.",
+		"image": "borcane_dulciata.jpeg"
+	},
+	{
+		"id": 3,
+		"name": "Vișinată",
+		"description": "Vișinata noastră este o băutură tradițională, realizată prin macerarea vișinelor în alcool, oferind un gust dulce-acrișor și o aromă inconfundabilă.",
+		"image": "visinata_targ_4.jpeg"
+	},
+	{
+		"id": 4,
+		"name": "Sirop de vișine",
+		"description": "Siropul nostru natural de vișine este perfect pentru băuturi răcoritoare sau pentru a adăuga un gust delicios la deserturile tale preferate.",
+		"image": "borcan_visine.jpeg"
+	},
+	{
+		"id": 5,
+		"name": "Vișine uscate",
+		"description": "Vișinele uscate păstrează toate aromele și beneficiile nutriționale, fiind o gustare sănătoasă și delicioasă pentru orice moment al zilei.",
+		"image": "borcane_dulciata.jpeg"
+	},
+	{
+		"id": 6,
+		"name": "Dulceață de vișine",
+		"description": "Dulceața noastră de vișine este preparată după rețeta bunicii, cu ingrediente 100% naturale, fără conservanți sau aditivi artificiali.",
+		"image": "visinata_targ_4.jpeg"
+	}
+]
+
