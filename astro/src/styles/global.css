@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--font-inter: "Inter", "sans-serif";
+	--font-inter: "Poppins", "Inter", "sans-serif";
 	/* Base color from logo - dark red/maroon (#5f101d), all colors in same gamut */
 	--color-brand-red-dark: #5f101d;
 	--color-brand-red: #7a1525;
