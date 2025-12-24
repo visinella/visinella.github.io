@@ -1,27 +1,27 @@
 [
 	{
 		"id": 1,
-		"author": "Jane Doe",
-		"review": "The food was amazing! I loved the atmosphere and the service was great."
+		"author": "Maria Popescu",
+		"review": "Compotul de vișine este absolut delicios! Gustul autentic și natural se simte în fiecare lingură. Recomand cu căldură!"
 	},
 	{
 		"id": 2,
-		"author": "John Smith",
-		"review": "The best Italian food I've ever had. I can't wait to come back!"
+		"author": "Ion Georgescu",
+		"review": "Am comandat gemul de vișine și sunt impresionat de calitate. Fără conservanți, exact cum trebuie să fie un produs natural."
 	},
 	{
 		"id": 3,
-		"author": "Alice Johnson",
-		"review": "The pasta was perfectly cooked and the sauce was delicious. I highly recommend this restaurant."
+		"author": "Elena Ionescu",
+		"review": "Vișinata este minunată! Are un gust tradițional autentic, exact ca la bunica. Mulțumim pentru produsele de calitate!"
 	},
 	{
 		"id": 4,
-		"author": "Bob Brown",
-		"review": "The pizza was fantastic! I will definitely be ordering from here again."
+		"author": "Andrei Radu",
+		"review": "Produse excelente! Am comandat mai multe borcane și toate au fost la fel de bune. Livrarea a fost rapidă și sigură."
 	},
 	{
 		"id": 5,
-		"author": "Sarah Wilson",
-		"review": "The tiramisu was to die for. I will be dreaming about it for weeks."
+		"author": "Cristina Moldovan",
+		"review": "Sunt foarte mulțumită de produsele Visinella. Sunt naturale, delicioase și la un preț corect. Voi mai comanda cu siguranță!"
 	}
 ]

@@ -1,0 +1,114 @@
+---
+import { socialMedia } from "~/data/config";
+
+// For now, using reviews from JSON. Later can be replaced with Facebook API
+import reviewsData from "~/data/reviews.json";
+
+// Facebook Messenger URL format: https://m.me/{page-username}
+// Extract page username from Facebook URL or use a default
+const getFacebookPageUsername = (url: string): string => {
+	// Extract username from URL like https://facebook.com/username or https://www.facebook.com/username
+	const match = url.match(/facebook\.com\/([^\/\?]+)/);
+	return match ? match[1] : 'visinella';
+};
+
+const messengerUrl = `https://m.me/${getFacebookPageUsername(socialMedia.facebook.url)}`;
+---
+
+<div class="facebook-reviews-wrapper">
+	<div class="swiper facebook-reviews-swiper">
+		<div class="swiper-wrapper">
+			{reviewsData.map((review) => (
+				<div class="swiper-slide">
+					<div class="px-4 lg:px-8 py-8">
+						<div class="bg-white rounded-lg shadow-md p-6 lg:p-8 text-center">
+							<div class="flex items-center justify-center mb-4">
+								<svg class="w-8 h-8 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+									<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+								</svg>
+							</div>
+							<blockquote class="border-none">
+								<p class="text-lg lg:text-xl font-medium text-gray-700 text-balance mb-4">
+									"{review.review}"
+								</p>
+								<footer class="text-center">
+									<cite class="font-semibold text-brand-red-dark not-italic">{review.author}</cite>
+								</footer>
+							</blockquote>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	
+	<div class="flex justify-center mt-8">
+		<a
+			href={messengerUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="button button-green flex items-center gap-2"
+		>
+			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+				<path d="M12 0C5.373 0 0 4.925 0 11c0 1.844.445 3.577 1.229 5.11L0 24l7.89-2.11C9.27 22.735 10.584 23 12 23c6.627 0 12-4.925 12-11S18.627 0 12 0zm0 20c-1.116 0-2.174-.204-3.152-.57l-.337-.098-3.447.922.92-3.437-.111-.338C5.07 15.956 4.5 13.554 4.5 11c0-4.687 3.364-8.5 7.5-8.5s7.5 3.813 7.5 8.5-3.364 8.5-7.5 8.5z"/>
+			</svg>
+			Trimite mesaj pe Facebook
+		</a>
+	</div>
+</div>
+
+<script>
+	import Swiper from "swiper";
+	import { Pagination, Autoplay } from "swiper/modules";
+	import "swiper/css";
+	import "swiper/css/pagination";
+
+	document.addEventListener("astro:page-load", () => {
+		const reviewsSwiper = document.querySelector(".facebook-reviews-swiper") as HTMLElement;
+		if (reviewsSwiper) {
+			new Swiper(reviewsSwiper, {
+				modules: [Pagination, Autoplay],
+				loop: true,
+				slidesPerView: 1,
+				spaceBetween: 32,
+				autoplay: {
+					delay: 4000,
+					disableOnInteraction: false,
+				},
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: true,
+				},
+				breakpoints: {
+					640: {
+						slidesPerView: 1,
+						spaceBetween: 40,
+					},
+					1024: {
+						slidesPerView: 2,
+						spaceBetween: 48,
+					},
+				},
+			});
+		}
+	});
+</script>
+
+<style>
+	.facebook-reviews-wrapper {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.facebook-reviews-swiper .swiper-pagination-bullet {
+		background: var(--color-brand-red-dark);
+		opacity: 0.5;
+	}
+
+	.facebook-reviews-swiper .swiper-pagination-bullet-active {
+		opacity: 1;
+		background: var(--color-brand-red-dark);
+	}
+</style>
+

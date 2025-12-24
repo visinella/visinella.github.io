@@ -6,6 +6,7 @@ import { Picture } from "astro:assets";
 import ButtonCallUs from "~/components/ButtonCallUs.astro";
 import Heading from "~/components/Heading.astro";
 import ProductSlider from "~/components/ProductSlider.astro";
+import FacebookReviews from "~/components/FacebookReviews.astro";
 
 // Images
 import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
@@ -67,8 +68,13 @@ import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
 		showBottomBorder={true}
 		bottomBorderColor="bg-brand-red-dark"
 	>
-		<div class="py-16">
+		<Heading>
+			<h2 slot="heading-title" class="font-black text-brand-red-dark h2">Recenzii</h2>
+			<p slot="heading-content">
+				Ce spun clienții noștri despre produsele noastre
+			</p>
+		</Heading>
 
-		</div>
+		<FacebookReviews />
 	</Section>
 </Layout>
