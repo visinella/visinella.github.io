@@ -190,7 +190,7 @@ p {
 }
 
 .menu-item-active:not(.menu-item-highlighted) {
-	@apply text-brand-red-dark font-bold;
+	@apply bg-brand-red-dark text-white font-bold rounded-full px-4 py-1.5;
 }
 
 [x-cloak] {

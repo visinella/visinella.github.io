@@ -9,12 +9,13 @@ const rmTrailingSlash = (path: string): string => {
 }
 
 const pathname = rmTrailingSlash(Astro.url.pathname);
+const currentHash = Astro.url.hash ? Astro.url.hash.substring(1) : (pathname === '/' ? 'home' : '');
 ---
 
 <header 
 	{...({ 
-		'x-data': '{ open: false, scrolled: false, initialized: false }',
-		'x-init': '$nextTick(() => { scrolled = window.scrollY > 50; initialized = true; })',
+		'x-data': '{ open: false, scrolled: false, initialized: false, activeSection: "' + currentHash + '" }',
+		'x-init': '$nextTick(() => { scrolled = window.scrollY > 50; initialized = true; initActiveSectionObserver(); })',
 		'@keydown.window.escape': 'open = false',
 		'@scroll.window': 'scrolled = window.scrollY > 50'
 	} as any)}
@@ -60,7 +61,9 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 						<a
 							href={item.url}
 							{...({ '@click.prevent': `scrollToSection('${item.url}')` } as any)}
-							class={`transition text-base/6 font-semibold hover:text-brand-red-dark cursor-pointer ${item.highlighted ? "menu-item-highlighted" : ""} ${pathname === item.url || (pathname === '/' && item.url.startsWith('/#')) ? "menu-item-active" : ""}`}
+							class={`transition text-base/6 font-semibold hover:bg-brand-red-dark hover:text-white rounded-full px-4 py-1.5 cursor-pointer ${item.highlighted ? "menu-item-highlighted" : ""}`}
+							data-section={item.url.replace('/#', '')}
+							{...({ ':class': '{ "menu-item-active": activeSection === "' + item.url.replace('/#', '') + '" || (activeSection === "" && "' + item.url.replace('/#', '') + '" === "home") }' } as any)}
 						>
 							{item.name}
 						</a>
@@ -107,7 +110,9 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 									<a
 										href={item.url}
 										{...({ '@click.prevent': `open = false; scrollToSection('${item.url}')` } as any)}
-										class={`block py-2 text-center font-semibold text-3xl cursor-pointer ${item.highlighted ? "menu-item-highlighted w-max mx-auto !px-8 !py-2" : ""} ${pathname === item.url || (pathname === '/' && item.url.startsWith('/#')) ? "menu-item-active" : ""}`}
+										class={`block py-2 text-center font-semibold text-3xl cursor-pointer rounded-full ${item.highlighted ? "menu-item-highlighted w-max mx-auto !px-8 !py-2" : ""}`}
+										data-section={item.url.replace('/#', '')}
+										{...({ ':class': '{ "menu-item-active": activeSection === "' + item.url.replace('/#', '') + '" || (activeSection === "" && "' + item.url.replace('/#', '') + '" === "home") }' } as any)}
 									>
 										{item.name}
 									</a>
@@ -172,8 +177,93 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 		}
 	}
 
+	/**
+	 * Initializes IntersectionObserver to track active section
+	 */
+	function initActiveSectionObserver() {
+		const sections = document.querySelectorAll('section[id]');
+		const menuLinks = document.querySelectorAll('[href^="/#"]');
+		let activeSectionId = '';
+		
+		const updateActiveSection = (sectionId: string) => {
+			if (activeSectionId === sectionId) return;
+			activeSectionId = sectionId;
+			
+			// Update Alpine.js activeSection
+			const header = document.querySelector('header');
+			if (header && (header as any).__x) {
+				(header as any).__x.$data.activeSection = sectionId;
+			}
+			
+			// Update active class on menu links
+			menuLinks.forEach((link) => {
+				const href = (link as HTMLAnchorElement).href;
+				const linkHash = href.includes('#') ? href.split('#')[1] : '';
+				if (linkHash === sectionId) {
+					link.classList.add('menu-item-active');
+				} else {
+					link.classList.remove('menu-item-active');
+				}
+			});
+		};
+		
+		const observer = new IntersectionObserver(
+			(entries) => {
+				// Find the section with the highest intersection ratio
+				let maxRatio = 0;
+				let mostVisibleSection = '';
+				
+				entries.forEach((entry) => {
+					if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+						maxRatio = entry.intersectionRatio;
+						mostVisibleSection = entry.target.id;
+					}
+				});
+				
+				// If we found a visible section, update active
+				if (mostVisibleSection && maxRatio > 0.1) {
+					updateActiveSection(mostVisibleSection);
+				}
+			},
+			{ 
+				threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+				rootMargin: '-120px 0px -60% 0px' 
+			}
+		);
+		
+		sections.forEach((section) => {
+			observer.observe(section);
+		});
+		
+		// Fallback: check on scroll which section is most visible
+		let scrollTimeout: ReturnType<typeof setTimeout>;
+		window.addEventListener('scroll', () => {
+			clearTimeout(scrollTimeout);
+			scrollTimeout = setTimeout(() => {
+				let maxVisible = 0;
+				let mostVisibleId = '';
+				
+				sections.forEach((section) => {
+					const rect = section.getBoundingClientRect();
+					const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+					const visibleRatio = visibleHeight / rect.height;
+					
+					if (visibleRatio > maxVisible && rect.top < window.innerHeight * 0.5) {
+						maxVisible = visibleRatio;
+						mostVisibleId = section.id;
+					}
+				});
+				
+				if (mostVisibleId) {
+					updateActiveSection(mostVisibleId);
+				}
+			}, 100);
+		});
+	}
+
 	// Make scrollToSection available globally for Alpine.js
 	(window as any).scrollToSection = scrollToSection;
+	(window as any).initActiveSectionObserver = initActiveSectionObserver;
 
 	// Handle hash navigation on page load
 	document.addEventListener('DOMContentLoaded', handleHashOnLoad);
