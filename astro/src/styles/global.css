@@ -3,8 +3,12 @@
 
 @theme {
 	--font-inter: "Inter", "sans-serif";
-	--color-brand-green: #157f71;
-	--color-brand-red: #db1d00;
+	/* Base color from logo - dark red/maroon (#5f101d), all colors in same gamut */
+	--color-brand-red-dark: #5f101d;
+	--color-brand-red: #7a1525;
+	--color-brand-red-light: #951a2d;
+	/* Use same red family for green (replaced with red-dark) */
+	--color-brand-green: #5f101d;
 }
 
 @utility container {

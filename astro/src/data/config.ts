@@ -4,7 +4,7 @@ export const siteCurrency = "USD";
 export const siteDomain = "visinella.md";
 export const siteName = "Vișinella";
 export const siteSlogan = "Produse naturale din livada noastră.";
-export const themeColor = "#FF0000";
+export const themeColor = "#5f101d";
 
 export const phone = {
 	href: "tel:+123456789",
