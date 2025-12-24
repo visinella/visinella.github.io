@@ -26,6 +26,46 @@ const needsRelative = showTopBorder || showBottomBorder;
 const finalClass = needsRelative && !sectionClass.includes('relative') 
 	? `${sectionClass} relative` 
 	: sectionClass;
+
+// Check if the color is a Tailwind class (starts with bg- or is a color name without #, rgb, rgba, var)
+const isTailwindClass = (color: string) => {
+	// CSS variables should be treated as inline styles, not Tailwind classes
+	if (color.startsWith('var(')) {
+		return false;
+	}
+	return color.startsWith('bg-') || (!color.includes('#') && !color.startsWith('rgb') && !color.startsWith('rgba') && /^[a-zA-Z-]/.test(color));
+};
+
+// Get the border color style - use inline style for hex/rgb, empty for Tailwind (will use currentColor)
+const getTopBorderStyle = () => {
+	if (isTailwindClass(topBorderColor)) {
+		return '';
+	}
+	return `fill: ${topBorderColor};`;
+};
+
+const getBottomBorderStyle = () => {
+	if (isTailwindClass(bottomBorderColor)) {
+		return '';
+	}
+	return `fill: ${bottomBorderColor};`;
+};
+
+// Convert bg-* classes to text-* for SVG fill using currentColor
+const getTopBorderClass = () => {
+	if (isTailwindClass(topBorderColor)) {
+		// Convert bg-* to text-* so SVG can use currentColor
+		return topBorderColor.replace('bg-', 'text-');
+	}
+	return '';
+};
+
+const getBottomBorderClass = () => {
+	if (isTailwindClass(bottomBorderColor)) {
+		return bottomBorderColor.replace('bg-', 'text-');
+	}
+	return '';
+};
 ---
 
 <section id={id} class={finalClass} style={style}>
@@ -33,11 +73,11 @@ const finalClass = needsRelative && !sectionClass.includes('relative')
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 1440 320"
-			class="absolute h-40 w-full top-0 inset-x-0 rotate-180"
+			class={`absolute h-40 w-full top-0 inset-x-0 rotate-180 ${getTopBorderClass()}`}
 			preserveAspectRatio="none"
 		>
 			<path
-				fill={topBorderColor}
+				style={getTopBorderStyle()}
 				fill-opacity="1"
 				d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
 			/>
@@ -50,14 +90,22 @@ const finalClass = needsRelative && !sectionClass.includes('relative')
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			viewBox="0 0 1440 320"
-			class="absolute h-40 w-full bottom-0 inset-x-0"
+			class={`absolute h-40 w-full bottom-0 inset-x-0 ${getBottomBorderClass()}`}
 			preserveAspectRatio="none"
 		>
 			<path
-				fill={bottomBorderColor}
+				style={getBottomBorderStyle()}
 				fill-opacity="1"
 				d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
 			/>
 		</svg>
 	)}
 </section>
+
+<style>
+	/* Support Tailwind background color classes for SVG borders */
+	/* When a Tailwind bg-* class is converted to text-*, use currentColor for fill */
+	section svg[class*="text-"] path {
+		fill: currentColor;
+	}
+</style>
