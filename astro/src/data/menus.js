@@ -1,33 +1,18 @@
 export const menuMain = [
     {
         name: "Home",
-        url: "/",
+        url: "/#home",
         highlighted: false,
     },
     {
-        name: "Menu",
-        url: "/menu",
+        name: "Produse",
+        url: "/#products",
         highlighted: false,
     },
     {
-        name: "About Us",
-        url: "/about-us",
+        name: "Recenzii",
+        url: "/#reviews",
         highlighted: false,
-    },
-    {
-        name: "Gallery",
-        url: "/gallery",
-        highlighted: false,
-    },
-    {
-        name: "Contact",
-        url: "/contact",
-        highlighted: false,
-    },
-    {
-        name: "Book",
-        url: "/book",
-        highlighted: true,
     },
 ];
 
