@@ -14,6 +14,11 @@ export const menuMain = [
         url: "/#reviews",
         highlighted: false,
     },
+    {
+        name: "Catalog",
+        url: "/catalog.pdf",
+        highlighted: true,
+    },
 ];
 
 export const footerPrimary = [
