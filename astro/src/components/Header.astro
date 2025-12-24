@@ -59,7 +59,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 					menuMain.map((item) => (
 						<a
 							href={item.url}
-							{...({ '@click.prevent': `$event.preventDefault(); const hash = '${item.url}'.split('#')[1]; if (hash) { const el = document.getElementById(hash); if (el) { const headerHeight = 100; const pos = el.getBoundingClientRect().top + window.pageYOffset - headerHeight; window.scrollTo({ top: pos, behavior: 'smooth' }); } }` } as any)}
+							{...({ '@click.prevent': `scrollToSection('${item.url}')` } as any)}
 							class={`transition text-base/6 font-semibold hover:text-brand-green cursor-pointer ${item.highlighted ? "menu-item-highlighted" : ""} ${pathname === item.url || (pathname === '/' && item.url.startsWith('/#')) ? "menu-item-active" : ""}`}
 						>
 							{item.name}
@@ -106,7 +106,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 								menuMain.map((item) => (
 									<a
 										href={item.url}
-										{...({ '@click.prevent': `open = false; const hash = '${item.url}'.split('#')[1]; if (hash) { const el = document.getElementById(hash); if (el) { const headerHeight = 100; const pos = el.getBoundingClientRect().top + window.pageYOffset - headerHeight; window.scrollTo({ top: pos, behavior: 'smooth' }); } }` } as any)}
+										{...({ '@click.prevent': `open = false; scrollToSection('${item.url}')` } as any)}
 										class={`block py-2 text-center font-semibold text-3xl cursor-pointer ${item.highlighted ? "menu-item-highlighted w-max mx-auto !px-8 !py-2" : ""} ${pathname === item.url || (pathname === '/' && item.url.startsWith('/#')) ? "menu-item-active" : ""}`}
 									>
 										{item.name}
@@ -122,16 +122,47 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 </header>
 
 <script>
-	// Handle smooth scroll on page load with hash
-	document.addEventListener('DOMContentLoaded', () => {
+	/**
+	 * Smoothly scrolls to a section on the page
+	 * @param {string} url - URL with hash (e.g., "/#products")
+	 */
+	function scrollToSection(url: string) {
+		if (!url.includes('#')) {
+			window.location.href = url;
+			return;
+		}
+
+		const hash = url.split('#')[1];
+		const element = document.getElementById(hash);
+		
+		if (!element) {
+			return;
+		}
+
+		const headerHeight = 100;
+		const elementPosition = element.getBoundingClientRect().top;
+		const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+		window.scrollTo({
+			top: offsetPosition,
+			behavior: 'smooth'
+		});
+	}
+
+	/**
+	 * Handles smooth scroll on page load when URL contains a hash
+	 */
+	function handleHashOnLoad() {
 		if (window.location.hash) {
 			setTimeout(() => {
 				const hash = window.location.hash.substring(1);
 				const element = document.getElementById(hash);
+				
 				if (element) {
 					const headerHeight = 100;
 					const elementPosition = element.getBoundingClientRect().top;
 					const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+					
 					window.scrollTo({
 						top: offsetPosition,
 						behavior: 'smooth'
@@ -139,5 +170,11 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 				}
 			}, 100);
 		}
-	});
+	}
+
+	// Make scrollToSection available globally for Alpine.js
+	(window as any).scrollToSection = scrollToSection;
+
+	// Handle hash navigation on page load
+	document.addEventListener('DOMContentLoaded', handleHashOnLoad);
 </script>
