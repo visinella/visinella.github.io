@@ -1,6 +1,6 @@
 ---
 import { menuMain } from "~/data/menus.js";
-import visinellaLogo from "~/assets/images/logo/visinella_logo-383x180.png";
+import visinellaLogo from "~/assets/images/logo/visinella_logo-4x.png";
 
 const rmTrailingSlash = (path: string): string => {
   return path.endsWith("/") && path.length > 1 
@@ -11,11 +11,25 @@ const rmTrailingSlash = (path: string): string => {
 const pathname = rmTrailingSlash(Astro.url.pathname);
 ---
 
-<header {...({ 'x-data': '{ open: false }', '@keydown.window.escape': 'open = false' } as any)}>
-	<div class="container py-6">
+<header 
+	{...({ 
+		'x-data': '{ open: false, scrolled: false, initialized: false }',
+		'x-init': '$nextTick(() => { scrolled = window.scrollY > 50; initialized = true; })',
+		'@keydown.window.escape': 'open = false',
+		'@scroll.window': 'scrolled = window.scrollY > 50'
+	} as any)}
+	class="sticky top-0 z-50 bg-white"
+	{...({ ':class': '{ "shadow-md": scrolled, "transition-all duration-300": initialized }' } as any)}
+>
+	<div class="container" {...({ ':class': '{ "transition-all duration-300": initialized, "py-3": scrolled, "py-6": !scrolled }' } as any)}>
 		<nav class="flex items-center justify-between" aria-label="Global">
-			<a href="/" class="-m-1.5 p-1.5">
-				<img src={visinellaLogo.src} alt="Visinella" class="h-12 w-auto" />
+			<a href="/" class="-m-1.5 p-1.5" {...({ ':class': '{ "transition-all duration-300": initialized }' } as any)}>
+				<img 
+					src={visinellaLogo.src} 
+					alt="Visinella" 
+					class="w-auto"
+					{...({ ':class': '{ "transition-all duration-300": initialized, "h-12": scrolled, "h-28": !scrolled }' } as any)}
+				/>
 			</a>
 			<div class="flex lg:hidden">
 				<button
