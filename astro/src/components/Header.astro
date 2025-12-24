@@ -18,7 +18,7 @@ const pathname = rmTrailingSlash(Astro.url.pathname);
 		'@keydown.window.escape': 'open = false',
 		'@scroll.window': 'scrolled = window.scrollY > 50'
 	} as any)}
-	class="sticky top-0 z-50 bg-white"
+	class="fixed top-0 left-0 right-0 z-[9999] bg-white"
 	{...({ ':class': '{ "shadow-md": scrolled, "transition-all duration-300": initialized }' } as any)}
 >
 	<div class="container" {...({ ':class': '{ "transition-all duration-300": initialized, "py-3": scrolled, "py-6": !scrolled }' } as any)}>
