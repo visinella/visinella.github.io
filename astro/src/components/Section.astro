@@ -1,8 +1,8 @@
 ---
-const { id, class: className, contain = true } = Astro.props;
+const { id, class: className, contain = true, style } = Astro.props;
 ---
 
-<section id={id} class={className}>
+<section id={id} class={className} style={style}>
 	<div class={`${contain ? "container py-16 lg:py-32" : ""}`}>
 		<slot />
 	</div>
