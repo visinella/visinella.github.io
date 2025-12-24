@@ -15,6 +15,11 @@ export const menuMain = [
         highlighted: false,
     },
     {
+        name: "Contact",
+        url: "/#contact",
+        highlighted: false,
+    },
+    {
         name: "Catalog",
         url: "/catalog.pdf",
         highlighted: true,

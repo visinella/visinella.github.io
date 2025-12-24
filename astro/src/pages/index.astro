@@ -7,6 +7,7 @@ import ButtonCallUs from "~/components/ButtonCallUs.astro";
 import Heading from "~/components/Heading.astro";
 import ProductSlider from "~/components/ProductSlider.astro";
 import FacebookReviews from "~/components/FacebookReviews.astro";
+import Contact from "~/components/Contact.astro";
 
 // Images
 import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
@@ -66,7 +67,7 @@ import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
 		showTopBorder={true}
 		topBorderColor="#fef5f5"
 		showBottomBorder={true}
-		bottomBorderColor="bg-brand-red-dark"
+		bottomBorderColor="bg-white"
 	>
 		<Heading>
 			<h2 slot="heading-title" class="font-black text-brand-red-dark h2">Recenzii</h2>
@@ -76,5 +77,21 @@ import CherryJarOpened from "~/assets/images/products/cherry-jar-opened.jpg";
 		</Heading>
 
 		<FacebookReviews />
+	</Section>
+	<Section 
+		id="contact" 
+		class:list={""} 
+		style="background-color: #f9fafb !important;"
+		showTopBorder={true}
+		topBorderColor="bg-brand-red-dark"
+	>
+		<Heading>
+			<h2 slot="heading-title" class="font-black text-brand-red-dark h2">Contact</h2>
+			<p slot="heading-content">
+				Ne puteți contacta prin oricare dintre metodele de mai jos
+			</p>
+		</Heading>
+
+		<Contact />
 	</Section>
 </Layout>

@@ -16,12 +16,24 @@ export const email = {
 	label: "info@visinella.md",
 };
 
+export const whatsapp = {
+	href: "https://wa.me/123456789",
+	label: "+123 456 789",
+};
+
+export const telegram = {
+	href: "https://t.me/visinella",
+	label: "@visinella",
+};
+
 export const address = {
 	street: "1234 Space Street",
 	city: "Galaxy City",
 	zip: "12345",
 	state: "Milky Way",
 	country: "Space",
+	// Google Maps embed coordinates (latitude, longitude)
+	coordinates: "47.0104,28.8638", // Example: Chisinau, Moldova
 };
 
 export const socialMedia = {
