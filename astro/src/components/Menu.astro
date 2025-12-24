@@ -39,7 +39,7 @@ const siteLangFormat = siteLang.replace("_", "-");
 
 				<dl class="max-w-5xl mx-auto">
 					<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-x-16 xl:gap-x-32">
-						{plate.data.plates.map((item) => (
+						{plate.data.plates.map((item: { name: string; description: string; price: number }) => (
 							<div>
 								<dt>
 									<div class="flex justify-between items-center">
