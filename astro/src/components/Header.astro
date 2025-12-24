@@ -26,19 +26,21 @@ const currentHash = Astro.url.hash ? Astro.url.hash.substring(1) : (isIndexPage 
 	{...({ ':class': '{ "shadow-md": scrolled, "transition-all duration-300": initialized }' } as any)}
 >
 	<div class="container" {...({ ':class': '{ "transition-all duration-300": initialized, "py-3": scrolled, "py-6": !scrolled }' } as any)}>
-		<nav class="flex items-center justify-between relative" aria-label="Global">
-			<a href="/" class="-m-1.5 p-1.5 flex-shrink-0" {...({ ':class': '{ "transition-all duration-300": initialized }' } as any)}>
-				<img 
-					src={visinellaLogo.src} 
-					alt="Visinella" 
-					class="w-auto"
-					{...({ ':class': '{ "transition-all duration-300": initialized, "h-12": scrolled, "h-28": !scrolled }' } as any)}
-				/>
-			</a>
-			<div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 z-10">
+		<nav class="flex items-center relative" aria-label="Global">
+			<div class="flex-shrink-0">
+				<a href="/" class="-m-1.5 p-1.5 block" {...({ ':class': '{ "transition-all duration-300": initialized }' } as any)}>
+					<img 
+						src={visinellaLogo.src} 
+						alt="Visinella" 
+						class="w-auto"
+						{...({ ':class': '{ "transition-all duration-300": initialized, "h-12": scrolled, "h-28": !scrolled }' } as any)}
+					/>
+				</a>
+			</div>
+			<div class="hidden lg:flex flex-1 justify-center items-center">
 				<PhoneNumber />
 			</div>
-			<div class="flex lg:hidden">
+			<div class="flex lg:hidden ml-auto">
 				<button
 					type="button"
 					class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
@@ -61,7 +63,7 @@ const currentHash = Astro.url.hash ? Astro.url.hash.substring(1) : (isIndexPage 
 					</svg>
 				</button>
 			</div>
-			<div class="hidden lg:flex lg:gap-x-12 lg:items-center">
+			<div class="hidden lg:flex lg:gap-x-12 lg:items-center ml-auto">
 				{
 					menuMain.map((item) => {
 						const isPdfLink = item.url.endsWith('.pdf');
