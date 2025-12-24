@@ -1,9 +1,9 @@
 // Global variables
 export const siteLang = "en-US";
 export const siteCurrency = "USD";
-export const siteDomain = "astropie.com";
-export const siteName = "AstroPie";
-export const siteSlogan = "The best pies in the galaxy!";
+export const siteDomain = "visinella.md";
+export const siteName = "Vișinella";
+export const siteSlogan = "Produse naturale din livada noastră.";
 export const themeColor = "#FF0000";
 
 export const phone = {
@@ -12,8 +12,8 @@ export const phone = {
 };
 
 export const email = {
-	href: "mailto:info@astropie.com",
-	label: "info@astropie.com",
+	href: "mailto:info@visinella.md",
+	label: "info@visinella.md",
 };
 
 export const address = {
