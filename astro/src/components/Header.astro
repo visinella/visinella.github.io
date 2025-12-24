@@ -1,7 +1,7 @@
 ---
 import { menuMain } from "~/data/menus.js";
-import { phone } from "~/data/config";
 import visinellaLogo from "~/assets/images/logo/visinella_logo-4x.png";
+import PhoneNumber from "~/components/PhoneNumber.astro";
 
 const rmTrailingSlash = (path: string): string => {
   return path.endsWith("/") && path.length > 1 
@@ -35,12 +35,7 @@ const currentHash = Astro.url.hash ? Astro.url.hash.substring(1) : (isIndexPage 
 				/>
 			</a>
 			<div class="hidden lg:flex absolute left-1/2 -translate-x-1/2">
-				<a
-					href={phone.href}
-					class="text-base/6 font-semibold text-brand-red-dark hover:text-brand-red transition-colors whitespace-nowrap"
-				>
-					{phone.label}
-				</a>
+				<PhoneNumber />
 			</div>
 			<div class="flex lg:hidden">
 				<button

@@ -1,0 +1,21 @@
+---
+import { phone } from "~/data/config";
+import IconPhone from "~/assets/icons/phone.svg";
+
+interface Props {
+	showIcon?: boolean;
+	iconSize?: string;
+	className?: string;
+}
+
+const { showIcon = true, iconSize = "size-5", className = "" } = Astro.props;
+---
+
+<a
+	href={phone.href}
+	class={`flex items-center gap-2 text-base/6 font-semibold text-brand-red-dark hover:text-brand-red transition-colors whitespace-nowrap ${className}`}
+>
+	{showIcon && <IconPhone class={iconSize} />}
+	{phone.label}
+</a>
+
