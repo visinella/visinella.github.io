@@ -149,10 +149,13 @@ const currentHash = Astro.url.hash ? Astro.url.hash.substring(1) : (pathname ===
 		const hash = url.split('#')[1];
 		const element = document.getElementById(hash);
 		
+		// If element doesn't exist (we're on a different page), navigate to index with hash
 		if (!element) {
+			window.location.href = url;
 			return;
 		}
 
+		// If element exists, scroll to it
 		const headerHeight = 100;
 		const elementPosition = element.getBoundingClientRect().top;
 		const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
