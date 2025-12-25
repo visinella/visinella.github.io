@@ -2,8 +2,9 @@
 import { phone, email, whatsapp, telegram, address } from "~/data/config";
 import IconPhone from "~/assets/icons/phone.svg";
 
-// Format full address
-const fullAddress = `${address.street}, ${address.city}, ${address.zip}, ${address.state}, ${address.country}`;
+// Format full address (filter out empty fields)
+const addressParts = [address.street, address.city, address.zip, address.state, address.country].filter(part => part && part.trim() !== '');
+const fullAddress = addressParts.join(', ');
 // Google Maps embed URL (no API key needed for basic embed)
 // If coordinates are available, use them; otherwise use address search
 const mapsEmbedUrl = address.coordinates 

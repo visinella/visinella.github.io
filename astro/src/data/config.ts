@@ -7,8 +7,8 @@ export const siteSlogan = "Produse naturale din livada noastră.";
 export const themeColor = "#5f101d";
 
 export const phone = {
-	href: "tel:+123456789",
-	label: "(123) 456-789",
+	href: "tel:+37368410604",
+	label: "(+373) 68-410-604",
 };
 
 export const email = {
@@ -17,8 +17,8 @@ export const email = {
 };
 
 export const whatsapp = {
-	href: "https://wa.me/123456789",
-	label: "+123 456 789",
+	href: "https://wa.me/37368410604",
+	label: "(+373) 68-410-604",
 };
 
 export const telegram = {
@@ -27,13 +27,13 @@ export const telegram = {
 };
 
 export const address = {
-	street: "1234 Space Street",
-	city: "Galaxy City",
-	zip: "12345",
-	state: "Milky Way",
-	country: "Space",
+	street: "s. Catranîc",
+	city: "r-nul Fălești",
+	zip: "",
+	state: "",
+	country: "Moldova",
 	// Google Maps embed coordinates (latitude, longitude)
-	coordinates: "47.0104,28.8638", // Example: Chisinau, Moldova
+	coordinates: "47.5968430601733,27.801899931903797", // Catranîc, Fălești, Moldova
 };
 
 export const socialMedia = {
