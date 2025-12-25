@@ -2,7 +2,7 @@
 export const siteLang = "en-US";
 export const siteCurrency = "USD";
 export const siteDomain = "visinella.md";
-export const siteName = "Vișinella";
+export const siteName = "VIȘINELLA";
 export const siteSlogan = "Produse naturale din livada noastră.";
 export const themeColor = "#5f101d";
 

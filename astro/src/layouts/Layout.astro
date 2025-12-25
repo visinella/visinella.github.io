@@ -5,7 +5,7 @@ import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
 const { pageTitle, title, description } = Astro.props;
 const baseUrl = `${Astro.url.protocol}//${Astro.url.host}`;
-import { siteLang, themeColor } from "~/data/config";
+import { siteLang, themeColor, siteName } from "~/data/config";
 ---
 
 <!doctype html>
@@ -20,21 +20,17 @@ import { siteLang, themeColor } from "~/data/config";
 		<meta name="description" content={description} />
 		<meta name="robots" content="index,follow" />
 		<meta name="googlebot" content="index,follow" />
-		<meta name="msapplication-TileColor" content="#ffffff" />
-
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
-		<meta property="og:image" content={`${baseUrl}/images/og-image.jpg`} />
 		<meta property="og:description" content={description} />
-		<meta property="og:site_name" content="WP Infusion" />
+		<meta property="og:site_name" content={siteName} />
 		<meta property="og:locale" content={siteLang} />
 
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:url" content={Astro.url} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<!-- <meta name="twitter:image" content={`${baseUrl}/images/og-image.jpg`} /> -->
 		<title>{pageTitle}</title>
 		<ClientRouter />
 	</head>
