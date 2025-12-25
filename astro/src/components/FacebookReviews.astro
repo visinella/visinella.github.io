@@ -4,15 +4,8 @@ import { socialMedia } from "~/data/config";
 // For now, using reviews from JSON. Later can be replaced with Facebook API
 import reviewsData from "~/data/reviews.json";
 
-// Facebook Messenger URL format: https://m.me/{page-username}
-// Extract page username from Facebook URL or use a default
-const getFacebookPageUsername = (url: string): string => {
-	// Extract username from URL like https://facebook.com/username or https://www.facebook.com/username
-	const match = url.match(/facebook\.com\/([^\/\?]+)/);
-	return match ? match[1] : 'visinella';
-};
-
-const messengerUrl = `https://m.me/${getFacebookPageUsername(socialMedia.facebook.url)}`;
+// Use Facebook page URL directly
+const facebookPageUrl = socialMedia.facebook.url;
 ---
 
 <div class="facebook-reviews-wrapper">
@@ -43,15 +36,15 @@ const messengerUrl = `https://m.me/${getFacebookPageUsername(socialMedia.faceboo
 		<div class="swiper-pagination"></div>
 	</div>
 	
-	<div class="flex justify-center mt-8">
+	<div class="flex justify-center mt-8 relative z-10">
 		<a
-			href={messengerUrl}
+			href={facebookPageUrl}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="button button-green flex items-center gap-2"
+			class="button button-green flex items-center gap-2 relative z-10 pointer-events-auto"
 		>
 			<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-				<path d="M12 0C5.373 0 0 4.925 0 11c0 1.844.445 3.577 1.229 5.11L0 24l7.89-2.11C9.27 22.735 10.584 23 12 23c6.627 0 12-4.925 12-11S18.627 0 12 0zm0 20c-1.116 0-2.174-.204-3.152-.57l-.337-.098-3.447.922.92-3.437-.111-.338C5.07 15.956 4.5 13.554 4.5 11c0-4.687 3.364-8.5 7.5-8.5s7.5 3.813 7.5 8.5-3.364 8.5-7.5 8.5z"/>
+				<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
 			</svg>
 			Trimite mesaj pe Facebook
 		</a>
@@ -109,6 +102,21 @@ const messengerUrl = `https://m.me/${getFacebookPageUsername(socialMedia.faceboo
 	.facebook-reviews-swiper .swiper-pagination-bullet-active {
 		opacity: 1;
 		background: var(--color-brand-red-dark);
+	}
+
+	/* Ensure button is fully clickable */
+	.facebook-reviews-wrapper > div:last-child {
+		position: relative;
+		z-index: 10;
+	}
+
+	.facebook-reviews-wrapper > div:last-child a {
+		display: inline-flex;
+		position: relative;
+		z-index: 10;
+		pointer-events: auto;
+		width: auto;
+		min-width: fit-content;
 	}
 </style>
 

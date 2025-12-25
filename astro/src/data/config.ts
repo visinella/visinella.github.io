@@ -38,7 +38,7 @@ export const address = {
 
 export const socialMedia = {
 	facebook: {
-		url: "https://facebook.com",
+		url: "https://facebook.com/visinella",
 		label: "Facebook",
 		icon: "facebook",
 	},
