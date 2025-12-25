@@ -185,6 +185,10 @@ p {
 	@apply text-white bg-brand-red-dark px-4 rounded-full py-1.5 hover:bg-brand-red-dark/80 hover:text-white;
 }
 
+.catalog-button {
+	@apply text-brand-red-dark border-2 border-brand-red-dark px-4 rounded-full py-1.5 hover:bg-brand-red-dark hover:text-white transition-all duration-300;
+}
+
 .menu-item-active.menu-item-highlighted {
 	@apply hover:text-white;
 }

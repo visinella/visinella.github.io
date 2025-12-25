@@ -12,8 +12,8 @@ const { url, name, className = "", ...rest } = Astro.props;
 const isMobile = className.includes('text-3xl');
 const iconSize = isMobile ? "w-6 h-6" : "w-4 h-4";
 const baseClasses = isMobile 
-	? "block py-2 text-center font-semibold text-3xl cursor-pointer rounded-full flex items-center justify-center gap-2 menu-item-highlighted w-max mx-auto !px-8 !py-2"
-	: "text-base/6 font-semibold rounded-full px-4 py-1.5 cursor-pointer flex items-center gap-2 menu-item-highlighted";
+	? "block py-2 text-center font-semibold text-3xl cursor-pointer rounded-full flex items-center justify-center gap-2 catalog-button w-max mx-auto !px-8 !py-2"
+	: "text-base/6 font-semibold rounded-full px-4 py-1.5 cursor-pointer flex items-center gap-2 catalog-button";
 ---
 
 <a
