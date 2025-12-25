@@ -31,6 +31,37 @@ jobs:
           cd astro
           npm run build
 
+      - name: Create Cloudflare Pages project (if not exists)
+        run: |
+          PROJECT_NAME="visinella"
+          ACCOUNT_ID="${{ secrets.CLOUDFLARE_ACCOUNT_ID }}"
+          API_TOKEN="${{ secrets.CLOUDFLARE_API_TOKEN }}"
+          
+          # Check if project exists
+          HTTP_CODE=$(curl -s -o /tmp/project_check.json -w "%{http_code}" -X GET \
+            "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/pages/projects/${PROJECT_NAME}" \
+            -H "Authorization: Bearer ${API_TOKEN}" \
+            -H "Content-Type: application/json")
+          
+          # If project doesn't exist (404), create it
+          if [ "$HTTP_CODE" = "404" ] || [ "$HTTP_CODE" = "000" ]; then
+            echo "Project not found, creating it..."
+            CREATE_RESPONSE=$(curl -s -X POST \
+              "https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/pages/projects" \
+              -H "Authorization: Bearer ${API_TOKEN}" \
+              -H "Content-Type: application/json" \
+              -d "{\"name\":\"${PROJECT_NAME}\",\"production_branch\":\"astro-build-dev\"}")
+            
+            if echo "$CREATE_RESPONSE" | grep -q '"success":true'; then
+              echo "Project created successfully"
+            else
+              echo "Failed to create project: $CREATE_RESPONSE"
+              exit 1
+            fi
+          else
+            echo "Project already exists (HTTP $HTTP_CODE)"
+          fi
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
