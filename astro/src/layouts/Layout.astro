@@ -5,7 +5,7 @@ import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
 const { pageTitle, title, description } = Astro.props;
 const baseUrl = `${Astro.url.protocol}//${Astro.url.host}`;
-import { siteLang, themeColor, siteName } from "~/data/config";
+import { googleAnalyticsMeasurementId, siteLang, themeColor, siteName } from "~/data/config";
 ---
 
 <!doctype html>
@@ -32,6 +32,28 @@ import { siteLang, themeColor, siteName } from "~/data/config";
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<title>{pageTitle}</title>
+		<script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsMeasurementId}`}></script>
+		<script is:inline define:vars={{ googleAnalyticsMeasurementId }}>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", googleAnalyticsMeasurementId);
+
+			let gaSkipFirstPageLoad = true;
+			document.addEventListener("astro:page-load", () => {
+				if (gaSkipFirstPageLoad) {
+					gaSkipFirstPageLoad = false;
+					return;
+				}
+				if (typeof gtag === "function") {
+					gtag("config", googleAnalyticsMeasurementId, {
+						page_path: window.location.pathname + window.location.search,
+					});
+				}
+			});
+		</script>
 		<ClientRouter />
 	</head>
 	<body>

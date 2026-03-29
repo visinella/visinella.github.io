@@ -6,6 +6,9 @@ export const siteName = "VIȘINELLA";
 export const siteSlogan = "Produse naturale din livada noastră.";
 export const themeColor = "#5f101d";
 
+/** Google Analytics 4 measurement ID (gtag.js) */
+export const googleAnalyticsMeasurementId = "G-8Y9WN7SQNN";
+
 export const phone = {
 	href: "tel:+37368410604",
 	label: "(+373) 68-410-604",
